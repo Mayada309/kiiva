@@ -20,6 +20,7 @@ function CartButton() {
       asChild
       size='icon'
       className='flex justify-center items-center relative'
+      variant={'outline'}
     >
       <Link href='/cart'>
         <FaShoppingCart className='text-slate-700 hover:text-orange-400' />
