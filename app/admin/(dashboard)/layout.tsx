@@ -7,9 +7,9 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
     <>
       <SidebarProvider>
         <AdminSidebar />
-        <main className='ml-8'>
+        <main className='ml-4'>
           <SidebarTrigger />
-          {children}
+          <section className='w-[80vw]'>{children}</section>
         </main>
       </SidebarProvider>
     </>
