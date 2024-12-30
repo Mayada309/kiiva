@@ -7,20 +7,25 @@ import React from 'react';
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination';
 
-const PaginationContainer = ({ meta }: { meta: PaginationData }) => {
-  const { last_page: pageCount, current_page: page } = meta;
-  const pages = Array.from({ length: pageCount }, (_, index) => index + 1);
-
+const PaginationContainer = ({
+  meta,
+}: {
+  meta: PaginationData | undefined;
+}) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
+
+  if (!meta) return null;
+
+  const { last_page: pageCount, current_page: page } = meta;
+  const pages = Array.from({ length: pageCount }, (_, index) => index + 1);
 
   const handlePageChange = (pageNumber: string) => {
     const newSearchParams = new URLSearchParams(searchParams.toString());

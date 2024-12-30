@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 
-import axios, { isAxiosError } from 'axios';
+import { isAxiosError } from 'axios';
 // import { redirect } from 'next/navigation';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
@@ -47,7 +47,7 @@ const Login = () => {
   const onSubmit = async (data: LoginSchemaType) => {
     setIsLoading(true);
     try {
-      const res = await customFetch.post('/login', data).then((res) => {
+      await customFetch.post('/login', data).then((res) => {
         setCookie('token', res?.data.token);
         toast.success('You have successfully logged in!');
         router.push('/admin');
