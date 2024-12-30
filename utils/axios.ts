@@ -35,3 +35,25 @@ customFetch.interceptors.response.use(
     }
   }
 );
+
+export const adminFetch = axios.create({
+  baseURL: 'http://kiiva.localhost:8000/admin',
+  headers: {
+    Accept: 'application/json',
+  },
+});
+adminFetch.interceptors.request.use(
+  function (config) {
+    const token = getCookie('token');
+
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    return config;
+  },
+  function (error) {
+    // Do something with request error
+    return Promise.reject(error);
+  }
+);
